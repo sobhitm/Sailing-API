@@ -1,0 +1,52 @@
+
+
+
+
+  <form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
+    <!-- <h1>Select country and state </h1> -->
+            <table>
+                <th>
+                    <select width="200px" name="Country" (change)="onSelectCountry($event)">  
+                        <option disabled>Select Country</option>
+                        <option *ngFor="let item of countryList" value="{{item.code}}">{{item.name}}</option>  
+                        </select>  
+                </th>
+                <th *ngIf="showLocationDropdown">
+                    <select width="200px" name="Location" formControlName="name" (change)="onSelectLocation($event)">
+                        <option disabled>Select Location</option>  
+                        <option *ngFor="let item of locationList" value="{{item.unCode}}">{{item.name}}</option>  
+                        </select>  
+                </th>
+                <th *ngIf="!showLocationDropdown">
+                    <select width="200px" name="Location">  
+                        <option *ngFor="let item of locationList" value="{{item.unCode}}">{{item.name}}</option>  
+                        </select>  
+                </th>
+
+                <th>
+                   <button>Submit</button>
+                </th>
+                  <th></th>  
+                <th>
+                    <p></p>
+                    <h1>By Default schedule data display as per coutntry India [IN] and Singapore [SG]</h1>
+                 </th>
+
+
+              </table>
+            </form>
+
+
+<p></p> 
+<div>
+<ag-grid-angular
+    style="width: 2500px; height: 800px;"
+    class="ag-theme-alpine"
+    [rowData]="rowData | async"
+    [columnDefs]="columnDefs"
+    [pagination]="true"
+    
+    
+></ag-grid-angular>
+</div>           
+
